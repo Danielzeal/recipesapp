@@ -22,10 +22,12 @@ const schema = Schema(
     minute: {
       type: Number,
       required: true,
+      default: 0,
     },
     hour: {
       type: Number,
       required: true,
+      default: 0,
     },
     instructions: [
       {

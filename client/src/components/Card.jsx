@@ -54,7 +54,7 @@ const Card = ({ recipe }) => {
         <div className='w-full bg-dark opacity-70 h-6 absolute bottom-0 p-4 flex gap-2 items-center text-extra_light font-body'>
           <FaClock />
           <span>
-            {recipe.hour}hrs : {recipe.minute}mins
+            {recipe.hour > 0 ? `${recipe.hour}hrs :` : ""} {recipe.minute}mins
           </span>
         </div>
         {userDetail && (
@@ -72,7 +72,7 @@ const Card = ({ recipe }) => {
         )}
       </div>
       <div className='p-4'>
-        <h3 className='text-center font-header italic font-bold'>
+        <h3 className='text-center font-header italic font-bold capitalize'>
           {recipe.recipe_name}
         </h3>
         <div className='flex gap-3 items-center'>
@@ -80,7 +80,7 @@ const Card = ({ recipe }) => {
             src={recipe.user.coverPhoto?.url}
             className='h-10 w-10 object-cover rounded-full object-top'
           />
-          <p className='text-lg font-body'>{recipe.user.name}</p>
+          <p className='text-lg font-body capitalize'>{recipe.user.name}</p>
         </div>
       </div>
     </>

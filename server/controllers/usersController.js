@@ -118,9 +118,14 @@ const updateUser = asyncHandler(async (req, res) => {
   user.name = name;
   user.email = email;
 
-  await user.save();
+  const updatedUser = await user.save();
 
-  res.json({ message: "User has been updated" });
+  res.json({
+    _id: updatedUser._id,
+    name: updatedUser.name,
+    email: updatedUser.email,
+    coverPhoto: updatedUser.coverPhoto,
+  });
 });
 
 // @desc    delete user account
@@ -138,7 +143,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 
   if (recipe) {
     res.status(400);
-    throw new Error("User has added recipes");
+    throw new Error("User still has created recipes");
   }
 
   const user = await User.findById(id);

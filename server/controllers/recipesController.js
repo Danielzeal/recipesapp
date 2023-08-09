@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Recipe from "../models/Recipes.js";
 import cloudinary from "../config/cloudinary.js";
@@ -22,13 +21,11 @@ const createRecipe = asyncHandler(async (req, res) => {
   if (
     !recipe_name ||
     !description ||
-    !minute ||
     !Array.isArray(ingredients) ||
     !ingredients.length ||
     !Array.isArray(instructions) ||
     !instructions.length ||
-    !imgFile ||
-    !hour
+    !imgFile
   ) {
     res.status(400);
     throw new Error("Enter all field");
@@ -76,7 +73,7 @@ const getRecipes = asyncHandler(async (req, res) => {
   const page = Number(req.query.pageNumber) || 1;
 
   const search_term = req.query.search_word
-    ? { recipe_name: { $regex: req.query.search_term, $options: "i" } }
+    ? { recipe_name: { $regex: req.query.search_word, $options: "i" } }
     : {};
 
   const recipeCount = await Recipe.countDocuments({ ...search_term });
@@ -212,7 +209,7 @@ const updateRecipe = asyncHandler(async (req, res) => {
 const getUserRecipes = asyncHandler(async (req, res) => {
   const { userId } = req.params;
 
-  const recipes = await Recipe.find({ user: userId }).sort({ createAt: 1 });
+  const recipes = await Recipe.find({ user: userId }).sort({ createdAt: -1 });
 
   if (recipes) {
     res.json(recipes);

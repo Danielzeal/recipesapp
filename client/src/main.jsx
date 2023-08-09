@@ -10,6 +10,7 @@ import {
   Login,
   Register,
   EditRecipe,
+  EditUser,
 } from "./pages";
 import "./index.css";
 import {
@@ -25,11 +26,14 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route index element={<Home />} />
+      <Route path='search/:search_word' element={<Home />} />
       <Route path='page/:pageNumber' element={<Home />} />
+      <Route path='search/:search_word/page/:pageNumber' element={<Home />} />
       <Route path='recipes/:id' element={<RecipeDetails />} />
       <Route path='my-recipes' element={<MyRecipes />} />
       <Route path='saved-recipes' element={<SavedRecipes />} />
       <Route path='create-recipe' element={<CreateRecipe />} />
+      <Route path='user/:id/edit' element={<EditUser />} />
       <Route path='login' element={<Login />} />
       <Route path='register' element={<Register />} />
       <Route path=':id/edit' element={<EditRecipe />} />

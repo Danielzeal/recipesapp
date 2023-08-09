@@ -14,7 +14,11 @@ const RecipeDetails = () => {
         <Heading text={"Recipe"} />
       </div>
       {isLoading ? (
-        <h1>Loading</h1>
+        <div className='mt-[100px] text-center'>
+          <h3 className='font-body text-2xl md:text-3xl font-semibold'>
+            Loading Recipe...
+          </h3>
+        </div>
       ) : (
         <>
           <figure className=''>
@@ -29,12 +33,13 @@ const RecipeDetails = () => {
                   <ProfileImage recipe={recipe} />
                   <span className='text-extra_light flex items-center gap-2'>
                     <FaClock />
-                    {recipe?.hour}hr : {recipe?.minute}min
+                    {recipe.hour > 0 ? `${recipe.hour}hrs :` : ""}{" "}
+                    {recipe.minute}mins
                   </span>
                 </div>
               </div>
             </div>
-            <figcaption className='text-center font-header italic font-bold'>
+            <figcaption className='text-center font-header italic font-bold capitalize'>
               {recipe?.recipe_name}
             </figcaption>
           </figure>

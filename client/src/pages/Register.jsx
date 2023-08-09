@@ -129,7 +129,7 @@ const Register = () => {
             className='border border-white py-2 px-4 bg-white rounded-2xl'
             accept='image/'
           />
-          <Button />
+          <Button text={"Submit"} type={"submit"} className={"self-start"} />
           <p>
             Already have an account?{" "}
             <Link to='/login' className='font-semibold text-base_color'>

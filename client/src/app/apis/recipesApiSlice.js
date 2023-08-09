@@ -11,10 +11,10 @@ export const recipesApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getRecipes: builder.query({
-      query: ({ search_term, pageNumber }) => ({
+      query: ({ search_word, pageNumber }) => ({
         url: RECIPE_URL,
         params: {
-          search_term,
+          search_word,
           pageNumber,
         },
       }),

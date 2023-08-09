@@ -6,3 +6,4 @@ export { default as RecipeDetails } from "./RecipeDetails";
 export { default as Login } from "./Login";
 export { default as Register } from "./Register";
 export { default as EditRecipe } from "./EditRecipe";
+export { default as EditUser } from "./EditUser";
