@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 import connectDB from "./config/connectDB.js";
+import { corsOptions } from "./config/corsOptions.js";
 import { notFound, errorHandler } from "./middlewares/errorHandler.js";
 
 import root from "./routes/root.js";
@@ -18,7 +19,7 @@ const PORT = process.env.PORT;
 
 connectDB();
 
-app.use(cors({ credentials: true, origin: true }));
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.json({ limit: "50mb" }));

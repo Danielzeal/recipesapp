@@ -153,10 +153,8 @@ const updateRecipe = asyncHandler(async (req, res) => {
 
   if (
     !id ||
-    !hour ||
     !recipe_name ||
     !description ||
-    !minute ||
     !Array.isArray(ingredients) ||
     !ingredients.length ||
     !Array.isArray(instructions) ||
