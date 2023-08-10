@@ -21,6 +21,7 @@ import {
 } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./app/store.js";
+import ProtectRoutes from "./components/ProtectRoutes.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,13 +31,16 @@ const router = createBrowserRouter(
       <Route path='page/:pageNumber' element={<Home />} />
       <Route path='search/:search_word/page/:pageNumber' element={<Home />} />
       <Route path='recipes/:id' element={<RecipeDetails />} />
-      <Route path='my-recipes' element={<MyRecipes />} />
-      <Route path='saved-recipes' element={<SavedRecipes />} />
-      <Route path='create-recipe' element={<CreateRecipe />} />
-      <Route path='user/:id/edit' element={<EditUser />} />
       <Route path='login' element={<Login />} />
       <Route path='register' element={<Register />} />
-      <Route path=':id/edit' element={<EditRecipe />} />
+
+      <Route element={<ProtectRoutes />}>
+        <Route path='my-recipes' element={<MyRecipes />} />
+        <Route path='saved-recipes' element={<SavedRecipes />} />
+        <Route path='create-recipe' element={<CreateRecipe />} />
+        <Route path='user/:id/edit' element={<EditUser />} />
+        <Route path=':id/edit' element={<EditRecipe />} />
+      </Route>
     </Route>
   )
 );

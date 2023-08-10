@@ -50,7 +50,7 @@ const RecipeDetails = () => {
             </div>
             <div>
               <Heading text={"Ingredient"} />
-              <ul className='flex items-center gap-4'>
+              <ul className='flex items-center gap-4 pl-6 scrollbar-hide whitespace-nowrap overflow-x-scroll'>
                 {recipe?.ingredients.map((ingredient, index) => (
                   <li
                     className='bg-extra_light py-2 px-6 rounded-3xl font-body'

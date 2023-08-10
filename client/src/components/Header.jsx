@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import { links } from "../utils/constant";
-import { FaXmark } from "react-icons/fa6";
+import { FaArrowDown, FaXmark } from "react-icons/fa6";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../app/slices/authSlice";
@@ -38,23 +38,40 @@ const Header = () => {
       <Container className={"flex items-center justify-between font-logo_bold"}>
         <Logo />
 
+        <nav className='md:flex gap-6 items-center hidden'>
+          {links.map((link, index) => (
+            <Link
+              to={link.routeLink}
+              key={index}
+              className='text-dark text-base font-body capitalize font-semibold hover:text-base_color transition-colors duration-150 ease-in'
+            >
+              {link.navlink}
+            </Link>
+          ))}
+        </nav>
+
         {userDetail ? (
-          <div className='flex gap-6 items-center justify-center'>
+          <div className='flex gap-4 items-center justify-center'>
             <img
               src={userDetail.coverPhoto?.url}
-              className='w-10 h-10 rounded-full object-top object-cover'
+              className='hidden md:block w-10 h-10 rounded-full object-top object-cover'
               alt='user profile photo'
-              onClick={handleMenu}
             />
+            <p
+              onClick={handleMenu}
+              className='md:hidden flex items-center gap-4 border-2 border-extra_light p-2 rounded-2xl'
+            >
+              {userDetail.name} <FaArrowDown />
+            </p>
             <Button
-              className={""}
+              className={"hidden md:block"}
               text={"Logout"}
               onClick={handleLogout}
               type={"button"}
             />
           </div>
         ) : (
-          <div className='hidden md:flex items-center gap-4 text-base text-dark font-semibold'>
+          <div className='flex items-center gap-4 text-sm sm:text-base text-dark font-semibold'>
             <Link
               to={"/login"}
               className='border-2 border-dark rounded-2xl px-4 py-2 cursor-pointer hover:border-base_color hover:text-base_color transition-colors duration-150 ease-in-out'
@@ -70,24 +87,30 @@ const Header = () => {
           </div>
         )}
         <div
-          className={`absolute top-0 z-[100] ${
-            !menu ? "left-[100%]" : "left-[20%]"
-          } right-0 overflow-hidden bg-base_color transition-all duration-200 ease-in`}
+          className={`absolute top-[90px] z-[100] ${
+            !menu ? "left-[100%]" : "left-[10%]"
+          } right-0 overflow-hidden bg-extra_light transition-all duration-200 ease-in px-8`}
         >
           <button onClick={handleMenu} className='absolute top-10 right-10'>
-            <FaXmark size={28} color='#10250B' />
+            <FaXmark size={32} color='red' />
           </button>
-          <nav className='flex flex-col h-screen items-center justify-center gap-6'>
+          <nav className='flex flex-col md:h-[300px] h-[250px] md:mt-[150px] mt-[100px] gap-6'>
             {links.map((link, index) => (
               <Link
                 to={link.routeLink}
                 key={index}
-                className='text-extra_light text-3xl font-body uppercase font-semibold'
+                className='text-base_color md:text-3xl font-body uppercase font-semibold text-lg'
                 onClick={handleMenu}
               >
                 {link.navlink}
               </Link>
             ))}
+            <Button
+              className={"md:hidden text-2xl"}
+              text={"Logout"}
+              onClick={handleLogout}
+              type={"button"}
+            />
           </nav>
         </div>
       </Container>

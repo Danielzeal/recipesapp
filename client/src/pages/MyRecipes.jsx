@@ -50,7 +50,7 @@ const MyRecipes = () => {
     <section>
       <div className='px-4 lg:px-16 sm:px-12 md:px-6 2xl:max-w-7xl mx-auto font-body'>
         <Heading text='My Recipes' />
-        <div className='flex justify-end gap-4 flex-row my-2 items-center p'>
+        <div className='flex justify-end gap-4 sm:flex-row my-2 flex-col items-center p'>
           <Button
             text={"Delete Account"}
             className={"bg-red-500 hover:bg-red-700"}
@@ -63,7 +63,6 @@ const MyRecipes = () => {
             Edit User Detail
           </Link>
         </div>
-        <h3>Hi {userDetail.name}</h3>
         {isLoading ? (
           <div className='mt-[120px] text-center'>
             <h3 className='font-body text-2xl md:text-3xl font-semibold'>
@@ -73,14 +72,15 @@ const MyRecipes = () => {
         ) : !data || !data.length ? (
           <div className='mt-[120px] text-center'>
             <h3 className='font-body text-2xl md:text-3xl font-semibold'>
-              You have not add any recipe!{" "}
+              Empty vault!{" "}
               <span className='text-base_color'>
-                <Link to={"/create-recipe"}>Add Recipe</Link>
+                <Link to={"/create-recipe"}>create new recipe</Link>
               </span>
             </h3>
           </div>
         ) : (
           <div className='mt-4'>
+            <h3>Hi {userDetail?.name}</h3>
             <table className='table-fixed w-full text-dark'>
               <thead>
                 <tr className='bg-extra_light'>

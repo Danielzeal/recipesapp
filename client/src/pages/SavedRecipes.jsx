@@ -17,7 +17,7 @@ const SavedRecipes = () => {
               Loading Recipes...
             </h3>
           </div>
-        ) : !data || data?.favorite_recipes ? (
+        ) : !data || !data?.favorite_recipes ? (
           <div className='mt-[150px] text-center'>
             <h3 className='font-body text-2xl md:text-3xl font-semibold'>
               Add to your recipe collections

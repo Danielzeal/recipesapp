@@ -42,10 +42,9 @@ const EditRecipe = () => {
     if (
       !recipe_name ||
       !description ||
+      !imgFile ||
       !Array.isArray(ingredients) ||
       !ingredients.length ||
-      !hour ||
-      !minute ||
       !Array.isArray(instructions) ||
       !instructions.length
     ) {

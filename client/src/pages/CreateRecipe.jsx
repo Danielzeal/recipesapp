@@ -48,7 +48,7 @@ const CreateRecipe = () => {
           user: userDetail._id,
         }).unwrap();
         toast.success("Recipe created");
-        navigate("/");
+        navigate("/my-recipes");
       } catch (err) {
         toast.error("Server error please try again!");
         console.log(err?.data?.message);

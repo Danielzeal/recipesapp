@@ -84,7 +84,7 @@ const Form = ({
       />
       <p className='text-xs text-dark px-4'>Press Enter to add ingredient.</p>
       {ingredients.length ? (
-        <div className='flex gap-2 overflow-x-scroll'>
+        <div className='flex gap-2 scrollbar-hide whitespace-nowrap overflow-x-scroll'>
           {ingredients.map((ingre, ind) => (
             <div
               key={ind}

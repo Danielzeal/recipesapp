@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Heading from "../components/Heading";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { setCredentials } from "../app/slices/authSlice";
 import { Button } from "../components";
@@ -9,8 +9,17 @@ import { useUpdateUserMutation } from "../app/apis/usersApiSlice";
 
 const EditUser = () => {
   const { id } = useParams();
+  const userDetail = useSelector((state) => state.auth.userDetail);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    if (userDetail) {
+      setName(userDetail.name || "");
+      setEmail(userDetail.email || "");
+    }
+  }, [userDetail]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,7 +40,7 @@ const EditUser = () => {
           setEmail("");
           setName("");
           toast.success("User info updated");
-          navigate("/");
+          navigate("/my-recipes");
         } else {
           toast.error("User info updated failed!");
         }
@@ -50,7 +59,7 @@ const EditUser = () => {
       <div className='max-w-[530px] mx-auto w-full bg-extra_light rounded-2xl px-4 py-8 mt-3'>
         <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
           <input
-            type='email'
+            type='text'
             placeholder='Enter name'
             className='w-full h-11 rounded-2xl px-4'
             value={name}
